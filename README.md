@@ -1,4 +1,4 @@
-ciUI is an Block for Cinder (version 0.8.4) that easily allows for the creation of user interfaces aka GUIs. ciUI also takes care of widget layout, spacing, font loading, saving and loading settings, and callbacks. ciUI can be easily customized (colors, font & widget sizes, padding, layout, etc).
+ciUI is an Block for Cinder (version 0.8.4) that easily allows for the creation of user interfaces aka GUIs. ciUI also takes care of varible binding, widget layout, spacing, font loading, saving and loading settings, and callbacks. ciUI can be easily customized (UI themes, colors, font & widget sizes, padding, layout, etc).
 
 ciUI contains a collection of minimally designed graphical user interface (GUI) widgets:
 
@@ -14,7 +14,7 @@ Widgets in ciUI:
 - Moving Plot/Graph
 - Image Display, Image Color Sampler
 
-This library allows for rapid UI design and development. Widget layout is semi-automatic, and can be easily customized. ciUI is a GL based GUI and uses Cinder's drawings calls to render its widgets. It integrates into Cinder projects very easily since it follow’s Cinder’s Block ideology. There are many examples included in the download that show how to add widgets, customize their placement, get values from different types of widgets, set widget values, add callback functions for gui events, saving and loading settings, and more.
+This library allows for rapid UI design and development, which is important when designing/sketching with code. Widget layout is semi-automatic, and can be easily customized. ciUI is a GL based GUI and uses Cinder's drawings calls to render its widgets. It integrates into Cinder projects very easily since it follow’s Cinder’s Block ideology. There are many examples included in the download that show how to add widgets, customize their placement, get values from different types of widgets, automagically bind class variable to sliders, buttons, etc, set widget values, add callback functions for gui events, saving and loading settings, and more.
 
 This UI library was inspired & influenced by: 
 
@@ -23,7 +23,7 @@ This UI library was inspired & influenced by:
 - SimpleGUI (http://marcinignac.com/blog/simplegui/)
 - Apple's User Interface 
 
-ciUI was / is developed by Reza Ali (www.syedrezaali.com || syed.reza.ali@gmail.com || @rezaali). It has been tested on OSX  and iOS. It should work on windows, but I haven't tested it yet. ciUI is open source under an MIT License, therefore you can use it in commercial and non-commercial projects. If you do end up using it, please let me know. I would love to see examples of it out there in the wild. If you plan to use it in a commercial project please consider donating to help support this Block and future releases/fixes/features (http://www.syedrezaali.com/blog/?p=2366).
+ciUI was / is developed by Reza Ali (www.syedrezaali.com || syed.reza.ali@gmail.com || @rezaali). It has been tested on OSX  and iOS. It should work on windows, but hasn't been tested yet. ciUI is open source under an MIT License, therefore you can use it in commercial and non-commercial projects. If you do end up using it, please let me know. I would love to see examples of it out there in the wild. If you plan to use it in a commercial project please consider donating to help support this Block and future releases/fixes/features (http://www.syedrezaali.com/blog/?p=2366).
 
 In terms of performance, I haven't compared it to other GUIs out there, but since its written using Cinder drawing calls and uses Boost for its callbacks, it runs fast (on my laptop (Apple Macbook Pro 2009)).
 
@@ -33,96 +33,100 @@ This tutorial will provide step by step instructions on how to integrate ciUI wi
 
 1. After downloading ciUI, place it in your Cinder Blocks folder. 
 
-2. Create a new project that is an example of the Cinder emptyExample (found in the apps/examples folder in OF).
+2. Create a new project using Cinder's TinderBox.app (found in the tools folder inside the Cinder directory). For simplicity I named my project ciUITutorial, I'll refer to this in the tutorial below. 
 
-3. Open the project in xCode. 
+3. Open the xCode project. 
 
-4. Drag the src (Blocks/ciUI/src) folder within ciUI into the Blocks folder in the xCode project (located on the left side of OF). You can rename this ciUI to make things neat. 
+4. Drag the src (ciUI/src) folder within ciUI into the Source folder in the xCode project. When prompted "Choose options for adding these files", make sure that you leave "Copy items into destination group's folder (if needed) unchecked", then press "Finish." 
 
-5. When prompted "Choose options for adding these files", just press "finish." Then add ofxXmlSettings to the Blocks folder inside your xCode project. ciUI uses this Block to save and load settings from XML files. 
+5. You can rename the resulting "src" folder to ciUI to make things neat and organized. 
 
-6. Now we must import some resources that ciUI will use into the data folder of the project your are working on. The easiest way is to go to one the examples in the ciUI Block folder and copy the bin/data/GUI folder into your project's data folder "bin/data/".
+6. Now we must import a font resource that ciUI will use. Select the Resources folder in xCode and right click. Select the option starts with "Add files to 'ciUITutorial' When the file dialog opens, navigate to where ciUI lives within your Blocks folder. Navigate to samples/ciUISimpleExample/xcode and select the "NewMedia Fett.ttf" font file. Make sure that you check "Copy items into destination group's folder (if needed)", then press "Finish." This will copy the font file to your project. 
 
-Note: The last step is critical so ciUI can find the proper resources for rendering font. 
+7. Now go back to xCode and include "ciUI.h" in your "ciUITutorialApp.cpp" file inside the source folder. 
 
-7. Now go back to xCode and include "ciUI.h" in your testApp.h file.
+8. Then in your ciUITutorialApp.cpp file, create a new ciUICanvas object by typing "ciUICanvas *gui;" within the ciUITutorialApp class. In this example we are going to create a slider and a toggle. The slider will control the background color, and the toggle will toggle fullscreen mode. Add a float variable called "bgValue" in the ciUITutorialApp class declaration. In addition, add these two functions in the ciUITutorialApp class declaration: 
 
-8. Then in your testApp.h file, create a new ciUICanvas object by typing "ciUICanvas *gui;" within the testApp class. In addition create two functions:
+void shutdown(); 
+void guiEvent(ciUIEvent *event);    
 
-void exit(); 
-void guiEvent(ciUIEventArgs &e);
+9. Now write the function definitions below in "ciUITutorialApp.cpp" file: 
 
-9. Switch over to your testApp.cpp file and define the exit and guiEvent functions: 
-
-void testApp::exit()
+void ciUITutorialApp::shutdown()
 {
-	
+
 }
 
-void testApp::guiEvent(ciUIEventArgs &e)
+void ciUITutorialApp::guiEvent(ciUIEvent *event)
 {
-	
+
 }
 
-10. Within the setup function we are going to initialize the gui object and add widgets to it. So one way to do that is: 
 
+10. Within the setup function we are going to initialize the gui object and bgValue and add widgets to it:
+
+bgValue = 0.75; 
 gui = new ciUICanvas(0,0,320,320);		//ciUICanvas(float x, float y, float width, float height)		
 
 Note: The arguments define the GUI's top left corner position and width and height. If no arguments are passed then the GUI will position itself on top of the window and the back of the GUI won't be drawn. 
 
-11. In the exit function we have to delete the gui after we are done using the application. But before this we want to tell the GUI to save the current values in the widgets to an XML file. Thus your exit function should look like: 
+11. In the shutdown function we have to delete the gui after we are done using the application. 
 
-void testApp::exit()
+void ciUITutorialApp::shutdown()
 {
-    gui->saveSettings("GUI/guiSettings.xml");     
     delete gui; 
 }
 
-12. We are now going to add widgets to the GUI: 
+12. We are now going to add widgets (a label, slider and toggle) to the GUI, in the setup function after creating a new ciUICanvas: 
 
-gui->addWidgetDown(new ciUILabel("ciUI TUTORIAL", OFX_UI_FONT_LARGE)); 
-gui->addWidgetDown(new ciUISlider(304,16,0.0,255.0,100.0,"BACKGROUND VALUE")); 
-ofAddListener(gui->newGUIEvent, this, &testApp::guiEvent); 
-gui->loadSettings("GUI/guiSettings.xml"); 
+gui->addWidgetDown(new ciUILabel("CIUI TUTORIAL", CI_UI_FONT_LARGE));    
+gui->addWidgetDown(new ciUISlider(304, 16, 0.0, 1.0, bgValue, "BACKGROUND"));
+gui->addWidgetDown(new ciUIToggle(16, 16, false, "FULLSCREEN"));    
 
-Note: The second to last line adds a listener/callback, so the gui knows what function to call once a widget is triggered or interacted with by the user, don't worry if its doesn't make too much sense right now, you'll get the hang of it. The last line tells the gui to load settings (widget values from a saved XML file, if the file isn't present it uses the default value of the widgets). 
+The next couple line will tightly fit the canvas to the widgets, and register events with the ciUITutorialApp class, and set the UI color theme.
 
-13. Now to the guiEvent function, we need to react to the user input. The argument of the guiEvent function, ciUIEventArgs &e, contains the widget which was modified. To access the widget we do the following:
+gui->autoSizeToFitWidgets();           
+gui->registerUIEvents(this, &ciUITutorialApp::guiEvent);
+gui->setTheme(CI_UI_THEME_MINBLACK);
 
-void testApp::guiEvent(ciUIEventArgs &e)
+Note: The second to last line adds a listener/callback, so the gui knows what function to call once a widget is triggered or interacted with by the user, don't worry if its doesn't make too much sense right now, you'll get the hang of it. 
+
+13. Then add these lines to the update and draw functions within the ciUITutorialApp class: 
+
+void ciUITutorialApp::update()
 {
-    if(e.widget->getName() == "BACKGROUND VALUE")	
-    {
-        ciUISlider *slider = (ciUISlider *) e.widget;    
-        ofBackground(slider->getScaledValue());
-    }   
+    gui->update(): 
 }
 
-Note: The if statement checks to see which widget was triggered. The way it does that is a string comparison. If the widget is the "BACKGROUND VALUE" slider widget, then case the widget to a slider and retrieve its value by the "getScaledValue()" function. 
-
-Note: A more practical example might save the value from the slider and use it else where the program. 
-
-14. Lets add a Toggle to toggle the window between fullscreen and window mode. In the setup function add another widget after the other widgets: 
-
-gui->addWidgetDown(new ciUIToggle(32, 32, false, "FULLSCREEN"));
-
-Note: if we placed this function before the other addWidgetDown calls then the Toggle would be placed above the slider and able. Lets keep things neat and put in under the slider. 
-
-15. We have to now respond to the "FULLSCREEN" toggle widget so we add more functionality to our guiEvent function. In the end it should look like:
-
-void testApp::guiEvent(ciUIEventArgs &e)
+void ciUITutorialApp::draw()
 {
-    if(e.widget->getName() == "BACKGROUND VALUE")
+    gl::clear( Color( bgValue, bgValue, bgValue ) ); 
+    gui->draw(): 
+}
+
+14. Now to the guiEvent function, we need to react to the user input. The argument of the guiEvent function, ciUIEvent *event, contains the widget which was modified. To access the widget we do the following:
+
+void ciUITutorialApp::guiEvent(ciUIEvent *event)
+{
+    string name = event->widget->getName(); 
+    cout << "GOT EVENT FROM: " << name << endl; 
+    if(name == "BACKGROUND")
     {
-        ciUISlider *slider = (ciUISlider *) e.widget;    
-        ofBackground(slider->getScaledValue());
+        ciUISlider *s = (ciUISlider *) event->widget; 
+        bgValue = s->getScaledValue();
     }
-    else if(e.widget->getName() == "FULLSCREEN")
+    else if(name == "FULLSCREEN")
     {
-        ciUIToggle *toggle = (ciUIToggle *) e.widget;
-        ofSetFullscreen(toggle->getValue()); 
-    }    
+        ciUIToggle *t = (ciUIToggle * ) event->widget; 
+        setFullScreen(t->getValue()); 
+    }  
 }
+
+Note: The if statement checks to see which widget was triggered. The way it does that is a string comparison. If the widget is the "BACKGROUND" slider widget, then we cast the widget to a slider and retrieve its value by the "getScaledValue()" function. 
+
+Note: An easier way is to bind the value when creating the slider, that way the bgValue gets automagically updated with the slider changes without having to write the code above, here is some code showing how to do that (very easy, just pass the address of the variable instead):
+
+gui->addWidgetDown(new ciUISlider(304, 16, 0.0, 1.0, &bgValue, "BACKGROUND"));
 
 Notes: So you can see adding other kinds of widgets and reacting to them are done in a very similar manner. Explore the examples to check out how to access some of the more complex widgets, I hope you'll see thats its pretty intuitive. I tried my best to limit the amount of code that needs to be written, however I kept it open enough so people can be expressive with it. 
 
