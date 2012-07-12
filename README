@@ -62,7 +62,6 @@ void ciUITutorialApp::guiEvent(ciUIEvent *event)
 
 }
 
-
 10. Within the setup function we are going to initialize the gui object and bgValue and add widgets to it:
 
 bgValue = 0.75; 
