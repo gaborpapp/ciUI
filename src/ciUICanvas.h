@@ -27,8 +27,9 @@
 
 #include "cinder/app/App.h"
 
-
+#if defined( CINDER_COCOA_TOUCH )
 #include "cinder/app/AppCocoaTouch.h"
+#endif
 #include "cinder/app/AppBasic.h"
 
 #include "cinder/Xml.h"
