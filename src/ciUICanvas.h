@@ -27,11 +27,9 @@
 
 #include "cinder/app/App.h"
 
-#if defined( CINDER_COCOA_TOUCH )
-    #include "cinder/app/AppCocoaTouch.h"
-#else
-    #include "cinder/app/AppBasic.h"
-#endif
+
+#include "cinder/app/AppCocoaTouch.h"
+#include "cinder/app/AppBasic.h"
 
 #include "cinder/Xml.h"
 #include "cinder/Utilities.h"
@@ -92,7 +90,12 @@ public:
         name = "CI_UI_WIDGET_CANVAS"; 
 		kind = CI_UI_WIDGET_CANVAS; 
 
-        mApp = app::App::get(); 
+#if defined( CINDER_COCOA_TOUCH )
+        mApp = (app::AppCocoaTouch *) app::App::get();                 
+#else
+        mApp = app::App::get();                 
+#endif 
+
 		enabled = false; 		
 		enable(); 
 		
@@ -519,8 +522,6 @@ public:
         mApp->unregisterMouseMove( mCbMouseMove );
         mApp->unregisterMouseDrag( mCbMouseDrag );	
     }	
-	
-#endif	
 
     //KeyBoard Callbacks
 	void enableKeyEventCallbacks()
@@ -536,6 +537,7 @@ public:
         mApp->unregisterKeyUp( mCbKeyUp );         
 	}
     
+#endif	    
     virtual void update()
     {		
         if(enabled)
@@ -590,7 +592,7 @@ public:
         
 #if defined( CINDER_COCOA_TOUCH )
 
-	virtual void canvasTouchesBegan(TouchEvent event) 
+	virtual bool canvasTouchesBegan(TouchEvent event) 
 	{		
         for( vector<TouchEvent::Touch>::const_iterator touchIt = event.getTouches().begin(); touchIt != event.getTouches().end(); ++touchIt ) 
         {                
@@ -602,22 +604,25 @@ public:
                 }
             }
         }
+        return false;         
 	}
     
-	virtual void canvasTouchesMoved(TouchEvent event) 
+	virtual bool canvasTouchesMoved(TouchEvent event) 
 	{        
         for(int i = 0; i < widgets.size(); i++)
         {
             if(widgets[i]->isVisible())	widgets[i]->touchesMoved(event);
         }
+        return false;         
     }
     
-	virtual void canvasTouchesEnded(TouchEvent event) 
+	virtual bool canvasTouchesEnded(TouchEvent event) 
 	{
         for(int i = 0; i < widgets.size(); i++)
         {
             if(widgets[i]->isVisible())	widgets[i]->touchesEnded(event); 
         }
+        return false;         
 	}
     	
 #else	
@@ -2110,10 +2115,12 @@ protected:
     
     ci::CallbackMgr<void(ciUIEvent*)> uiEventCallbackMgr;
     
-	app::App *mApp;    
+    
 #if defined( CINDER_COCOA_TOUCH )
+    app::AppCocoaTouch *mApp;
     ci::CallbackId mCbTouchesBegan, mCbTouchesMoved, mCbTouchesEnded; 
 #else
+    app::App *mApp;    	
     ci::CallbackId mCbMouseDown, mCbMouseDrag, mCbMouseUp, mCbMouseMove;
     ci::CallbackId mCbKeyDown, mCbKeyUp;
 #endif 

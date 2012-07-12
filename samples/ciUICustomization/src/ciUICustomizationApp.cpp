@@ -222,7 +222,7 @@ void ciUICustomizationApp::setupGUI1()
     
     gui->addWidgetDown(new ciUILabel("CIUI THEMES", CI_UI_FONT_LARGE));
     gui->addWidgetDown(new ciUILabel("CHANGE THEMES:", CI_UI_FONT_MEDIUM));
-    ((ciUISlider *)gui->addWidgetDown(new ciUISlider(w, h, 0, 44, 0, "THEME SELECTOR")))->setIncrement(1.0);
+    ((ciUISlider *)gui->addWidgetDown(new ciUISlider(w, h, 0, 44, 0.0, "THEME SELECTOR")))->setIncrement(1.0);
     gui->addWidgetDown(new ciUILabel("BACKGROUND SLIDERS", CI_UI_FONT_MEDIUM));    
     gui->addWidgetDown(new ciUISlider(w, h, 0, 1.0, bgColorR, "RED"));    
     gui->addWidgetDown(new ciUISlider(w, h, 0, 1.0, bgColorG, "GREEN"));

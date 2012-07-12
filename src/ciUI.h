@@ -186,9 +186,20 @@ enum ciUIThemeType
 #define CI_UI_FONT_NAME "NewMedia Fett.ttf"
 
 #define CI_UI_FONT_RESOLUTION 150
+
+#if defined( CINDER_COCOA_TOUCH )
+
+#define CI_UI_FONT_LARGE_SIZE 48
+#define CI_UI_FONT_MEDIUM_SIZE 36
+#define CI_UI_FONT_SMALL_SIZE 28
+
+#else
+
 #define CI_UI_FONT_LARGE_SIZE 24
 #define CI_UI_FONT_MEDIUM_SIZE 18
 #define CI_UI_FONT_SMALL_SIZE 16
+
+#endif 
 
 #define CI_UI_LABEL_DRAW_BACK false
 #define CI_UI_LABEL_SHADOW_OFFSET 1

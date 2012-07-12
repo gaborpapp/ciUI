@@ -73,10 +73,9 @@ void ciUIButtonsApp::setup()
     gui->addWidgetDown(new ciUISpacer(length, 2), CI_UI_ALIGN_LEFT);
     vector<string> names;     names.push_back("RAD 1");    names.push_back("RAD 2");    
     gui->addWidgetDown(new ciUIRadio(dim,dim, "RADIO HORIZONTAL", names, CI_UI_ORIENTATION_HORIZONTAL));
-    vector<string> names2;     names2.push_back("RADIO 1");    names2.push_back("RADIO 2");     names2.push_back("RADIO 3");        
+    vector<string> names2;     names2.push_back("RADIO 1");    names2.push_back("RADIO 2");     
     gui->addWidgetDown(new ciUIRadio(dim,dim, "RADIO VERTICAL", names2, CI_UI_ORIENTATION_VERTICAL));    
     
-    gui->addWidgetDown(new ciUISpacer(length, 2) );        
     ((ciUIToggleMatrix *)gui->addWidgetDown(new ciUIToggleMatrix(dim, dim, 4, 5, "TOGGLE MATRIX")))->setAllowMultiple(true);    //true by default
     ((ciUIToggleMatrix *)gui->addWidgetRight(new ciUIToggleMatrix(dim, dim, 4, 5, "RADIO MATRIX")))->setAllowMultiple(false);    
     

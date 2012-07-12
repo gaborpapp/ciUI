@@ -36,11 +36,13 @@ void ciUIVariableBindingApp::prepareSettings( Settings *settings )
 }
 
 void ciUIVariableBindingApp::setup()
-{
+{    
     backgroundColor.r = 0.75; 
     backgroundColor.g = 0.75; 
     backgroundColor.b = 0.75;  
-    
+    red = 0.75; 
+    green = 0.75; 
+    blue = 0.75;     
     alpha = .8; 
     radius = 150; 
     drawFill = true;     

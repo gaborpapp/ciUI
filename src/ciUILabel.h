@@ -127,7 +127,8 @@ public:
         if(draw_fill)
         {
             ci::gl::color(color_fill);
-            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+padding+yOffset)));
+//            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+padding+yOffset)));
+            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+yOffset)));               //Wonky
         }
 	}
 	
@@ -136,14 +137,15 @@ public:
 		if(draw_fill_highlight)
         {
             ci::gl::color(color_fill_highlight);
-            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+padding+yOffset)));            
-        }        
+//            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+padding+yOffset)));            
+            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+yOffset)));               //Wonky
+        }           
 	}	
             
     void drawBackLabel()
     {      
         ci::gl::color(color_back);
-        font->drawString(label, Vec2f(floor(rect->getX())+CI_UI_LABEL_SHADOW_OFFSET+xOffset, floor(rect->getY()+padding+CI_UI_LABEL_SHADOW_OFFSET+yOffset)));            
+        font->drawString(label, Vec2f(floor(rect->getX())+CI_UI_LABEL_SHADOW_OFFSET+xOffset, floor(rect->getY()+CI_UI_LABEL_SHADOW_OFFSET+yOffset)));            
     }
     
 	void drawString(float x, float y, std::string _string)
@@ -188,7 +190,7 @@ public:
             paddedRect->setWidth(w+padding*2.0); 
             paddedRect->setHeight(h+padding*2.0);
             xOffset = 0;
-            yOffset = font->getAscent()-font->getDescent();
+            yOffset = getStringHeight(label)-padding;
         }
         else
         {
@@ -208,7 +210,7 @@ public:
             paddedRect->setHeight(rect->getHeight()+padding*2.0);            
             paddedRect->setWidth(rect->getWidth()+padding*2.0);            
             xOffset = (int) (rect->getWidth()*.5 - w*.5);
-            yOffset = font->getAscent()-font->getDescent();
+            yOffset = getStringHeight(label)-padding;
         }
 	}
         

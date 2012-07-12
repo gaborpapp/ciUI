@@ -40,11 +40,13 @@ void ciUISimpleExampleApp::setup()
     backgroundColor.r = 0.5; 
     backgroundColor.g = 0.5; 
     backgroundColor.b = 0.5;  
-    
+    red = .75; 
+    green = .75; 
+    blue = .75;         
     alpha = .8; 
     radius = 150; 
     drawFill = true;     
-    backgroundColor = ColorA(233/255.0, 52.0/255.0, 27.0/255.0); 
+    backgroundColor = ColorA(233.0/255.0, 52.0/255.0, 27.0/255.0); 
     resolution = 30; 
     position = Vec2f(getWindowWidth()*.5, getWindowHeight()*.5); 
     
@@ -56,9 +58,9 @@ void ciUISimpleExampleApp::setup()
     gui = new ciUICanvas(0,0,guiWidth, guiHeight);
 	gui->addWidgetDown(new ciUILabel("CIUI: SIMPLE EXAMPLE", CI_UI_FONT_LARGE)); 
     gui->addWidgetDown(new ciUILabel("BACKGROUND CONTROL", CI_UI_FONT_MEDIUM));     
-    gui->addWidgetDown(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0, 1.0, backgroundColor.r, "BGR")); 
-    gui->addWidgetRight(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0, 1.0, backgroundColor.g, "BGG")); 
-    gui->addWidgetRight(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0, 1.0, backgroundColor.b, "BGB"));     
+    gui->addWidgetDown(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0, 1.0, (float)backgroundColor.r, "BGR")); 
+    gui->addWidgetRight(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0, 1.0, (float)backgroundColor.g, "BGG")); 
+    gui->addWidgetRight(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0, 1.0, (float)backgroundColor.b, "BGB"));     
     gui->addWidgetDown(new ciUILabel("CIRCLE CONTROL", CI_UI_FONT_MEDIUM));     
     gui->addWidgetDown(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0.0, 1.0, red, "RED")); 
 	gui->addWidgetRight(new ciUISlider(length/3.0 - CI_UI_GLOBAL_WIDGET_SPACING, dim, 0.0, 1.0, green, "GREEN")); 

@@ -49,7 +49,7 @@ void ciUISlidersApp::setup()
 	gui->addWidgetDown(new ciUILabel("NORMAL SLIDER", CI_UI_FONT_MEDIUM)); 	
     gui->addWidgetDown(new ciUISlider(length,dim, 0.0, 1.0, red, "RED")); 
 	gui->addWidgetDown(new ciUILabel("MINIMAL SLIDER", CI_UI_FONT_MEDIUM)); 	
-    gui->addWidgetDown(new ciUIMinimalSlider(length, 0.0, 1.0, green, "GREEN", CI_UI_FONT_MEDIUM));
+    gui->addWidgetDown(new ciUIMinimalSlider(length, dim, 0.0, 1.0, green, "GREEN", CI_UI_FONT_MEDIUM));
 	gui->addWidgetDown(new ciUILabel("BILABEL SLIDER", CI_UI_FONT_MEDIUM)); 	    
     gui->addWidgetDown(new ciUIBiLabelSlider(length, 0.0, 1.0, blue, "BLUE", "LESS BLUE", "MORE BLUE", CI_UI_FONT_MEDIUM));
     gui->addWidgetDown(new ciUILabel("RANGE SLIDER", CI_UI_FONT_MEDIUM)); 

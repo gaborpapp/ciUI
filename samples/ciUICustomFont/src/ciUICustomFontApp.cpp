@@ -46,10 +46,10 @@ void ciUICustomFontApp::setup()
     
     gui = new ciUICanvas(0,0,guiWidth, guiHeight);
 
-//    gui->setFont("faucet.ttf");                     //This loads a new font and sets the GUI font
-//    gui->setFontSize(CI_UI_FONT_LARGE, 26);            //These call are optional, but if you want to resize the LARGE, MEDIUM, and SMALL fonts, here is how to do it. 
-//    gui->setFontSize(CI_UI_FONT_MEDIUM, 20);           
-//    gui->setFontSize(CI_UI_FONT_SMALL, 16);            //SUPER IMPORTANT NOTE: CALL THESE FUNTIONS BEFORE ADDING ANY WIDGETS, THIS AFFECTS THE SPACING OF THE GUI
+    gui->setFont("faucet.ttf");                     //This loads a new font and sets the GUI font
+    gui->setFontSize(CI_UI_FONT_LARGE, 36);            //These call are optional, but if you want to resize the LARGE, MEDIUM, and SMALL fonts, here is how to do it. 
+    gui->setFontSize(CI_UI_FONT_MEDIUM, 24);           
+    gui->setFontSize(CI_UI_FONT_SMALL, 16);            //SUPER IMPORTANT NOTE: CALL THESE FUNTIONS BEFORE ADDING ANY WIDGETS, THIS AFFECTS THE SPACING OF THE GUI
     
     gui->addWidgetDown(new ciUILabel("CIUI: CUSTOM FONT", CI_UI_FONT_LARGE));    
     gui->addWidgetDown(new ciUISpacer(length, 2)); 
