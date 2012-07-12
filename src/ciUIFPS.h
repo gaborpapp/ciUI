@@ -51,7 +51,7 @@ public:
     
 	void update()
 	{            
-		setLabel("FPS: " + numToString(ci::app::getAverageFps(), labelPrecision));
+		setLabel("FPS: " + numToString(ci::app::App::get()->getAverageFps(), labelPrecision));
 	}
 	
     void setLabelPrecision(int _precision) 

@@ -53,7 +53,7 @@ public:
     
     void update()
 	{
-        setValue(ci::app::getAverageFps());
+        setValue(ci::app::App::get()->getAverageFps());
 	}
 	
 }; 
