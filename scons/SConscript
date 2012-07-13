@@ -1,0 +1,12 @@
+Import('env')
+
+_INCLUDES = [Dir('../src').abspath]
+_RESOURCES = ['NewMedia Fett.ttf', 'sliderhandle.png', 'sliderhandledown.png',
+			'sliderprogress.png', 'slidertrack.png', 'toggle.png',
+			'toggledown.png', 'toggleon.png', 'toggleover.png']
+_RESOURCES = [File('../resources/' + r).abspath for r in _RESOURCES]
+
+env.Append(CPPPATH = _INCLUDES)
+env.Append(RESOURCES = _RESOURCES)
+
+Return('env')

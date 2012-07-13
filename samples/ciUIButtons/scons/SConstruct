@@ -1,0 +1,11 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUIButtonsApp'
+env['APP_SOURCES'] = ['ciUIButtonsApp.cpp']
+env['RESOURCES'] = ['play.png']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+

@@ -1,0 +1,13 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUICustomPlacementApp'
+env['APP_SOURCES'] = ['ciUICustomPlacementApp.cpp']
+env['RESOURCES'] = ['Images.png', 'Recycle.png', 'DVD.png',
+					'Music.png', 'System Preferences.png', 'House.png',
+					'Play.png', 'WiFi.png']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+

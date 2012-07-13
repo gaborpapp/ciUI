@@ -1,0 +1,12 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUIAllWidgetsApp'
+env['APP_SOURCES'] = ['ciUIAllWidgetsApp.cpp']
+env['RESOURCES'] = ['biorhythm.png', 'play.png']
+env['DEBUG'] = 1
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+

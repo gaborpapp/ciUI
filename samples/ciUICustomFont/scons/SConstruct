@@ -1,0 +1,11 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUICustomFontApp'
+env['APP_SOURCES'] = ['ciUICustomFontApp.cpp']
+env['RESOURCES'] = ['faucet.ttf']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+

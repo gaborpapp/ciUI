@@ -1,0 +1,11 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUICustomizationApp'
+env['APP_SOURCES'] = ['ciUICustomizationApp.cpp']
+env['RESOURCES'] = ['biorhythm.png']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+
