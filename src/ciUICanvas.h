@@ -24,7 +24,6 @@
 
 #ifndef CIUI_CANVAS
 #define CIUI_CANVAS
-
 #include "cinder/app/App.h"
 
 #if defined( CINDER_COCOA_TOUCH )
@@ -145,7 +144,11 @@ public:
                 writeSpecificWidgetData(widgetsWithState[i], widget); 
                 settings.push_back( widget );
             }
-            settings.write( writeFile( "settings/"+fileName , true) );        
+            std::string filePath = "settings/"+fileName;
+#if defined( CINDER_COCOA )
+            filePath = ci::app::App::getResourcePath().string()+"/"+filePath;
+#endif
+            settings.write( writeFile( filePath , true) );
         }
         catch (Exception e)
         {
@@ -241,7 +244,11 @@ public:
     {
         try
         {
-            XmlTree XML( loadFile( "settings/"+fileName ) );         
+            std::string filePath = "settings/"+fileName;
+#if defined( CINDER_COCOA )
+            filePath = ci::app::App::getResourcePath().string()+"/"+filePath;
+#endif
+            XmlTree XML( filePath );
 
             XmlTree settings = XML.getChild( "Settings" );        
             for( XmlTree::Iter item = settings.begin(); item != settings.end(); ++item )
