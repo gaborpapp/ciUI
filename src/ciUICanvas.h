@@ -24,6 +24,7 @@
 
 #ifndef CIUI_CANVAS
 #define CIUI_CANVAS
+
 #include "cinder/app/App.h"
 
 #if defined( CINDER_COCOA_TOUCH )
