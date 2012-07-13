@@ -1,0 +1,10 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUITutorialApp'
+env['APP_SOURCES'] = ['ciUITutorialApp.cpp']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+

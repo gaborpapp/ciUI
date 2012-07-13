@@ -1,0 +1,10 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUIScrollableApp'
+env['APP_SOURCES'] = ['ciUIScrollableApp.cpp']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+

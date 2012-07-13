@@ -1,0 +1,10 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUIVariableBindingApp'
+env['APP_SOURCES'] = ['ciUIVariableBindingApp.cpp']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+

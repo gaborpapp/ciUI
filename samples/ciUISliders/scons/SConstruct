@@ -1,0 +1,10 @@
+env = Environment()
+
+env['APP_TARGET'] = 'ciUISlidersApp'
+env['APP_SOURCES'] = ['ciUISlidersApp.cpp']
+
+# ciUI block
+env = SConscript('../../../scons/SConscript', exports = 'env')
+
+SConscript('../../../../../scons/SConscript', exports = 'env')
+
