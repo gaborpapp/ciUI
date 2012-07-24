@@ -93,7 +93,6 @@ public:
         {
             valuelowRef = _valuelow;                                               
             valuehighRef = _valuehigh;                                             
-
         }
         else
         {
@@ -101,7 +100,6 @@ public:
             valuehighRef = new float();             
             *valuelowRef = valuelow;                                               
             *valuehighRef = valuehigh;                                             
-
         }
 		
 		max = _max; 

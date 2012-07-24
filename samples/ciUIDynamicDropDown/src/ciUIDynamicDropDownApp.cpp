@@ -52,6 +52,7 @@ void ciUIDynamicDropDownApp::setup()
     names.push_back("ONE");    names.push_back("TWO");    names.push_back("THREE");    names.push_back("FOUR");    names.push_back("FIVE");
     ddl = new ciUIDropDownList(length, "DYNAMIC DROP DOWN", names, CI_UI_FONT_MEDIUM); 
     ddl->setAllowMultiple(true);
+    ddl->setAutoClose(true);
     gui->addWidgetDown(ddl);
     
     gui->registerUIEvents(this, &ciUIDynamicDropDownApp::guiEvent);

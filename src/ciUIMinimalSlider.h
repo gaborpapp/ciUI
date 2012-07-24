@@ -46,6 +46,14 @@ public:
         init(w, h, _min, _max, &_value, _name, _size); 
     }    
     
+    ciUIMinimalSlider(float w, float _min, float _max, float _value, string _name, int _size = CI_UI_FONT_SMALL)
+    {
+        useReference = false;                                                 
+        rect = new ciUIRectangle(0,0,w,0); 
+        autoSize = true; 
+        init(w, 0, _min, _max, &_value, _name, _size); 
+    } 
+    
     ciUIMinimalSlider(float x, float y, float w, float h, float _min, float _max, float *_value, string _name, int _size = CI_UI_FONT_SMALL)
     {
         useReference = true;                                         
@@ -61,6 +69,14 @@ public:
         autoSize = false; 
         init(w, h, _min, _max, _value, _name, _size); 
     }        
+    
+    ciUIMinimalSlider(float w, float _min, float _max, float *_value, string _name, int _size = CI_UI_FONT_SMALL)
+    {
+        useReference = false;                                                 
+        rect = new ciUIRectangle(0,0,w,0); 
+        autoSize = true; 
+        init(w, 0, _min, _max, _value, _name, _size); 
+    }     
     
     void init(float w, float h, float _min, float _max, float *_value, string _name, int _size)
     {

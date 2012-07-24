@@ -119,7 +119,6 @@ public:
         if(useReference)
             value = cinder::lmap<float>(*valueRef, min, max, 0.0, 1.0); 
     }
-
     
     virtual void setDrawPadding(bool _draw_padded_rect)
 	{

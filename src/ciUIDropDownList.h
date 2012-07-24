@@ -112,16 +112,23 @@ public:
         else
         {
             ltoggle = new ciUILabelToggle(0, yt, rect->getWidth(), rect->getHeight(), false, toggleName, size);                 
-        }        
-        ltoggle->setParent(this);
+        }                
         ltoggle->getRect()->setParent(this->getRect());
         ltoggle->getRect()->setY(rect->getRawY()+yt); 			       
         ltoggle->getRect()->setX(rect->getRawX()); 			        
         ltoggle->setVisible(*value); 
         ltoggle->setLabelVisible(*value);             
-        toggles.push_back(ltoggle);         
-        
+        toggles.push_back(ltoggle);                 
         parent->addWidget(ltoggle);
+        ltoggle->setParent(this);        
+        if(isOpen())
+        {
+            open(); 
+        }           
+        else
+        {
+            close();
+        }        
     }    
     
     void removeToggle(string toggleName)
@@ -137,6 +144,15 @@ public:
                 break; 
             }
         }
+        for(int i = 0; i < selected.size(); i++)
+        {
+            ciUILabelToggle *other = (ciUILabelToggle *)selected[i];
+            if(other->getName() == toggleName)
+            {
+                selected.erase(selected.begin()+i);                                             
+                break; 
+            }
+        }                        
         if(t != NULL)
         {
             parent->removeWidget(t);
@@ -328,10 +344,11 @@ public:
 
         if(autoClose)
         {
-            setValue(!*value);
-        }        
-        setToggleVisibility(*value);         
-
+            if(isOpen())
+            {
+                close();
+            }            
+        }            
         
         if(!allowMultiple)
         {
@@ -347,7 +364,6 @@ public:
                 selected.push_back(t);
             }                           
         }        
-            
         
 		if(parent != NULL)
 		{

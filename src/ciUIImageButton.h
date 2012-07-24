@@ -36,24 +36,28 @@ public:
     
     ciUIImageButton(float x, float y, float w, float h, bool _value, DataSourceRef _pathURL, string _name)
     {
+        useReference = false; 
         rect = new ciUIRectangle(x,y,w,h);
         init(w, h, &_value, _pathURL, _name);         
     }
 
     ciUIImageButton(float w, float h, bool _value, DataSourceRef _pathURL, string _name)
     {
+        useReference = false; 
         rect = new ciUIRectangle(0,0,w,h);
         init(w, h, &_value, _pathURL, _name);         
     }
 
     ciUIImageButton(float x, float y, float w, float h, bool *_value, DataSourceRef _pathURL, string _name)
     {
+        useReference = true;         
         rect = new ciUIRectangle(x,y,w,h);
         init(w, h, _value, _pathURL, _name);         
     }
     
     ciUIImageButton(float w, float h, bool *_value, DataSourceRef _pathURL, string _name)
     {
+        useReference = true;         
         rect = new ciUIRectangle(0,0,w,h);
         init(w, h, _value, _pathURL, _name);         
     }
