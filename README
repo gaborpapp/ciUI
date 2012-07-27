@@ -1,4 +1,4 @@
-ciUI is an Block for Cinder (version 0.8.4) that easily allows for the creation of user interfaces aka GUIs. ciUI also takes care of varible binding, widget layout, spacing, font loading, saving and loading settings, and callbacks. ciUI can be easily customized (UI themes, colors, font & widget sizes, padding, layout, etc).
+ciUI is a Block for Cinder (version 0.8.4) that easily allows for the creation of user interfaces aka GUIs. ciUI also takes care of varible binding, widget layout, spacing, font loading, saving and loading settings, and callbacks. ciUI can be easily customized (UI themes, colors, font & widget sizes, padding, layout, etc).
 
 Read more about how it came to be here: http://www.syedrezaali.com/blog/?p=2366
 
@@ -100,13 +100,13 @@ Note: The second to last line adds a listener/callback, so the gui knows what fu
 
 void ciUITutorialApp::update()
 {
-    gui->update(): 
+    gui->update();
 }
 
 void ciUITutorialApp::draw()
 {
     gl::clear( Color( bgValue, bgValue, bgValue ) ); 
-    gui->draw(): 
+    gui->draw();
 }
 
 14. Now to the guiEvent function, we need to react to the user input. The argument of the guiEvent function, ciUIEvent *event, contains the widget which was modified. To access the widget we do the following:

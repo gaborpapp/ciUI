@@ -30,31 +30,31 @@
 class ciUILabelToggle : public ciUIToggle
 {
 public:
-    ciUILabelToggle(float x, float y, float w, bool _value, string _name, int _size)
+    ciUILabelToggle(float x, float y, float w, bool _value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {
         useReference = false; 
-        rect = new ciUIRectangle(x,y,w,0);                                                      //the widget's value        
+        rect = new ciUIRectangle(x,y,w,0);                                                      
         autoSize = false;         
         init(&_value, _name, _size); 
     }
 
-    ciUILabelToggle(float x, float y, float w, float h, bool _value, string _name, int _size)
+    ciUILabelToggle(float x, float y, float w, float h, bool _value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {
         useReference = false; 
-        rect = new ciUIRectangle(x,y,w,h);                                                      //the widget's value        
+        rect = new ciUIRectangle(x,y,w,h);                                                      
         autoSize = false;         
         init(&_value, _name, _size); 
     }
     
-    ciUILabelToggle(float w, bool _value, string _name, int _size, float h = 0)
+    ciUILabelToggle(float w, bool _value, string _name, int _size = CI_UI_FONT_MEDIUM, float h = 0)
     {
         useReference = false;         
-        rect = new ciUIRectangle(0,0,w,h);                                                      //the widget's value        
+        rect = new ciUIRectangle(0,0,w,h);                                                      
         autoSize = false;         
         init(&_value, _name, _size); 
     }
     
-    ciUILabelToggle(float x, float y, bool _value, string _name, int _size)
+    ciUILabelToggle(float x, float y, bool _value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {				
         useReference = false;         
         rect = new ciUIRectangle(x,y,0,0);                 
@@ -62,7 +62,7 @@ public:
         init(&_value, _name, _size); 
     }
 
-    ciUILabelToggle(bool _value, string _name, int _size)
+    ciUILabelToggle(bool _value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {				
         useReference = false;         
         rect = new ciUIRectangle(0,0,0,0);                 
@@ -70,31 +70,31 @@ public:
         init(&_value, _name, _size); 
     }
     
-    ciUILabelToggle(float x, float y, float w, bool *_value, string _name, int _size)
+    ciUILabelToggle(float x, float y, float w, bool *_value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {
         useReference = true;         
-        rect = new ciUIRectangle(x,y,w,0);                                                      //the widget's value        
+        rect = new ciUIRectangle(x,y,w,0);                                                      
         autoSize = false;         
         init(_value, _name, _size); 
     }
     
-    ciUILabelToggle(float x, float y, float w, float h, bool *_value, string _name, int _size)
+    ciUILabelToggle(float x, float y, float w, float h, bool *_value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {
         useReference = true;         
-        rect = new ciUIRectangle(x,y,w,h);                                                      //the widget's value        
+        rect = new ciUIRectangle(x,y,w,h);                                                      
         autoSize = false;         
         init(_value, _name, _size); 
     }
     
-    ciUILabelToggle(float w, bool *_value, string _name, int _size, float h = 0)
+    ciUILabelToggle(float w, bool *_value, string _name, int _size = CI_UI_FONT_MEDIUM, float h = 0)
     {
         useReference = true;                 
-        rect = new ciUIRectangle(0,0,w,h);                                                      //the widget's value        
+        rect = new ciUIRectangle(0,0,w,h);                                                      
         autoSize = false;         
         init(_value, _name, _size); 
     }
     
-    ciUILabelToggle(float x, float y, bool *_value, string _name, int _size)
+    ciUILabelToggle(float x, float y, bool *_value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {				
         useReference = true;          
         rect = new ciUIRectangle(x,y,0,0);                 
@@ -102,7 +102,7 @@ public:
         init(_value, _name, _size); 
     }
     
-    ciUILabelToggle(bool *_value, string _name, int _size)
+    ciUILabelToggle(bool *_value, string _name, int _size = CI_UI_FONT_MEDIUM)
     {	
         useReference = true;                 
         rect = new ciUIRectangle(0,0,0,0);                 
