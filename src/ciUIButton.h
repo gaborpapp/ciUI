@@ -72,6 +72,16 @@ public:
     {
 		name = _name; 		
 		kind = CI_UI_WIDGET_BUTTON; 		
+        		
+        paddedRect = new ciUIRectangle(-padding, -padding, w+padding*2.0, h+padding*2.0);
+		paddedRect->setParent(rect); 
+        
+		label = new ciUILabel(w+padding*2.0,0, (name+" LABEL"), name, _size); 
+		label->setParent(label); 
+		label->setRectParent(rect); 
+        label->setEmbedded(true);		
+        drawLabel = true;
+        label->setVisible(drawLabel);      
         
         if(useReference)
         {
@@ -83,16 +93,7 @@ public:
             *value = *_value; 
         }
         
-        setValue(*_value); 		
-        paddedRect = new ciUIRectangle(-padding, -padding, w+padding*2.0, h+padding*2.0);
-		paddedRect->setParent(rect); 
-        
-		label = new ciUILabel(w+padding*2.0,0, (name+" LABEL"), name, _size); 
-		label->setParent(label); 
-		label->setRectParent(rect); 
-        label->setEmbedded(true);		
-        drawLabel = true;
-        label->setVisible(drawLabel);      
+        setValue(*_value);         
     }
     
     virtual void update()
