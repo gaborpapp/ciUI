@@ -249,7 +249,7 @@ public:
 #if defined( CINDER_COCOA )
             filePath = ci::app::App::getResourcePath().string()+"/"+filePath;
 #endif
-            XmlTree XML( filePath );
+            XmlTree XML( loadFile(filePath) );
 
             XmlTree settings = XML.getChild( "Settings" );        
             for( XmlTree::Iter item = settings.begin(); item != settings.end(); ++item )
